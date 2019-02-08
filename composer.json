@@ -1,0 +1,20 @@
+{
+    "name": "irfan/php-mom",
+    "description": "PHP Model Object Management",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Irfan",
+            "email": "irfan.dahir@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MOM\\": [
+                "src"
+            ]
+        }
+    }
+}
