@@ -35,16 +35,16 @@ class Schema
             $i = 0;
             foreach ($props as $prop => $val) {
                 if ($prop === $i) {
-                    $this->{$val} = $value;
+                    $this->$val = $value;
                     continue;
                 }
 
-                $this->{$prop} = $val ?? $value;
+                $this->$prop = $val ?? $value;
             }
         }
 
         if (is_string($props)) {
-            $this->{$props} = $value;
+            $this->$props = $value;
         }
 
         if (is_object($props)) {
@@ -65,12 +65,12 @@ class Schema
     {
         if (is_array($props)) {
             foreach ($props as $prop) {
-                unset($this->{$prop});
+                unset($this->$prop);
             }
         }
 
         if (is_string($props)) {
-            unset($this->{$props});
+            unset($this->$props);
         }
 
         return $this;
@@ -85,17 +85,32 @@ class Schema
     {
         if (is_array($props)) {
             foreach ($props as $prop => $propNewName) {
-                $this->{$propNewName} = $this->{$prop};
+                $this->$propNewName = $this->$prop;
                 $this->remove($prop);
             }
         }
 
         if (is_string($props)) {
-            $this->{$propNewName} = $this->{$props}; // copy value
+            $this->$propNewName = $this->$props; // copy value
             $this->remove($props);
         }
 
         return $this;
+    }
+
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+
+    public function __set($name, $value) : void
+    {
+        $this->$name = $value;
+    }
+
+    public function __isset($name) : bool
+    {
+        return $name !== null;
     }
 
     /**
