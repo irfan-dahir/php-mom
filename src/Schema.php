@@ -2,9 +2,17 @@
 
 namespace MOM;
 
+/**
+ * Class Schema
+ * @package MOM
+ */
 class Schema
 {
 
+    /**
+     * @param array|null $schema
+     * @return Schema
+     */
     public static function create(?array $schema = null) : self
     {
         $instance = new self;
@@ -16,6 +24,11 @@ class Schema
         return $instance;
     }
 
+    /**
+     * @param $props
+     * @param null $value
+     * @return Schema
+     */
     public function add($props, $value = null) : self
     {
         if (is_array($props)) {
@@ -44,6 +57,10 @@ class Schema
         return $this;
     }
 
+    /**
+     * @param $props
+     * @return Schema
+     */
     public function remove($props) : self
     {
         if (is_array($props)) {
@@ -59,6 +76,11 @@ class Schema
         return $this;
     }
 
+    /**
+     * @param $props
+     * @param string|null $propNewName
+     * @return Schema
+     */
     public function update($props, ?string $propNewName = null) : self
     {
         if (is_array($props)) {
@@ -76,16 +98,26 @@ class Schema
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function toArray() : array
     {
         return (array) $this;
     }
 
+    /**
+     * @return string
+     */
     public function toJSON() : string
     {
         return \json_encode($this->toArray());
     }
 
+    /**
+     * @param string $json
+     * @return Schema
+     */
     public static function fromJSON(string $json) : self
     {
         return self::create(
