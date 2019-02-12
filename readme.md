@@ -4,7 +4,7 @@
 PHP-MOM is a stupid simple PHP Model object generator and helper.
 
 ## Installation
-1. `composer require irfan-dahir/php-mom`
+```composer require irfan-dahir/php-mom --no-dev```
 
 
 ## Example
@@ -14,6 +14,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 // Create the object
 $schema = \MOM\Schema::create();
+
+// Create an object from JSON
+$schema = \MOM\Schema::fromJSON("[]");
 
 // Adding Properties
 $schema->add('prop1'); // will assign value NULL
@@ -66,8 +69,12 @@ $schema->update([
 $schema->toArray(); // Model to Array
 
 $schema->toJSON(); // Model to JSON
+
 ```
 
+### Running tests
+1. `composer require irfan-dahir/php-mom --dev`
+2. `composer vendor/bin/phpunit tests`
 
 ### Dependencies
 - PHP 7.1+
