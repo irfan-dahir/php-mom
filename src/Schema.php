@@ -85,4 +85,11 @@ class Schema
     {
         return \json_encode($this->toArray());
     }
+
+    public static function fromJSON(string $json) : self
+    {
+        return self::create(
+            \json_decode($json, true)
+        );
+    }
 }
