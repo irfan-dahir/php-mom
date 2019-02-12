@@ -34,6 +34,13 @@ class Schema
             $this->{$props} = $value;
         }
 
+        if (is_object($props)) {
+            $props = get_object_vars($props);
+            foreach ($props as $prop => $val) {
+                $this->add($prop, $val);
+            }
+        }
+
         return $this;
     }
 
