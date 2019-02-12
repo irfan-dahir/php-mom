@@ -32,6 +32,14 @@ $schema->add([
     'prop_unedit' => true
 ]);
 
+// Works with pre-made models/objects too
+// Only copies public properties for now
+// Anonymous properties do NOT get copied (there might be a workaround)
+$schema->add(new class {
+    public $foo = "bar";
+    public $baz = false;
+});
+
 // Removing properties
 $schema->remove('prop2');
 
